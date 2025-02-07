@@ -1,0 +1,56 @@
+﻿@using Aminimanesh.Core.DTOs.SkillDTOs
+@model EditSkillDTO
+@{
+    ViewData["Title"] = "Edit Skill";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Edit this added skill.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">Skill Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="Skill" asp-action="EditSkill" method="post">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <div class="form-group row">
+
+                <input type="hidden" asp-for="@Model.SkillId"/>
+
+                <div class="col-sm-3 mb-2">
+                    <input type="text" class="form-control" asp-for="@Model.Title" value="@Model.Title"
+                           placeholder="Skill Title">
+                </div>
+                <div class="col-sm-3 mb-2">
+                    <input type="number" class="form-control" asp-for="@Model.Value" value="@Model.Value"
+                           placeholder="Skill Level (from 0 to 100)">
+                </div>
+                <div class="col-sm-3 mb-2">
+                    <input type="text" class="form-control" asp-for="@Model.Priority" value="@Model.Priority"
+                           placeholder="Priority">
+                </div>
+                <div class="col-sm-3 mb-2">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" asp-for="@Model.IsSideSkill" value="@Model.IsSideSkill">
+                        <label class="custom-control-label" asp-for="@Model.IsSideSkill">
+                            Side Skill
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Edit Skill
+            </button>
+        </form>
+    </div>
+</div>
+

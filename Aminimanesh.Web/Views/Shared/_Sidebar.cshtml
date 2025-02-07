@@ -1,0 +1,30 @@
+﻿<aside class="sidebar">
+    <!-- The avatar and main skills section -->
+    <section class="profile">
+        <span class="open-sidebar">
+            <i class="bi bi-three-dots-vertical"></i>
+        </span>
+        @await Component.InvokeAsync("ProfileInfoComponent")
+    </section>
+    <section class="sidebar-body">
+        <!-- Address section -->
+        @await Component.InvokeAsync("CommonInfoComponent")
+        <!-- The languages section -->
+        <section class="languages sidebar-section">
+            @await Component.InvokeAsync("LanguagesComponent")
+        </section>
+        <!-- Sidebar main skills are there -->
+        <section class="sidebar-skills sidebar-section">
+            @await Component.InvokeAsync("SkillsComponent")
+
+        </section>
+        <!-- Sidebar mini skills -->
+        <section class="mini-skills sidebar-section">
+            @await Component.InvokeAsync("SideSkillsComponent")
+        </section>
+    </section>
+    <!-- socials -->
+    <footer>
+        @await Component.InvokeAsync("SocialsComponent")
+    </footer>
+</aside>

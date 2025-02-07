@@ -1,0 +1,37 @@
+﻿@using Aminimanesh.DataLayer.Entities.Owner
+@model Category
+@{
+    ViewData["Title"] = "Add Category";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Add a category for projects.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">Category Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="Project" asp-action="CreateCategory" method="post">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <div class="form-group row">
+                <div class="col-sm-3 mb-2">
+                    <input type="text" class="form-control" asp-for="@Model.Title"
+                           placeholder="Category Title">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Add Category
+            </button>
+        </form>
+    </div>
+</div>
+

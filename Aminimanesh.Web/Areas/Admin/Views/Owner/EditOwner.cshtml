@@ -1,0 +1,158 @@
+﻿@using Aminimanesh.Core.DTOs.OwnerDTOs
+@model EditOwnerDTO
+@{
+    ViewData["Title"] = "Edit Owner";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Edit your main information.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-primary">
+        <h6 class="m-0 font-weight-bold text-white">Owner Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="Owner" asp-action="EditOwner" method="post" enctype="multipart/form-data">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="@Model.OwnerId" value="@Model.OwnerId" />
+
+            <div class="form-group row g-0">
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.FullName" value="@Model.FullName"
+                           placeholder="Fullname">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="number" class="form-control" asp-for="@Model.Age" value="@Model.Age"
+                           placeholder="Age" min="1" max="100">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.FirstJob" value="@Model.FirstJob"
+                           placeholder="Main Job">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.SecondJob" value="@Model.SecondJob"
+                           placeholder="Side Job">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12 col-sm-6">
+                    <input type="email" class="form-control" asp-for="@Model.Email" value="@Model.Email"
+                           placeholder="Email">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <input type="email" class="form-control" asp-for="@Model.IncomeEmail" value="@Model.IncomeEmail"
+                           placeholder="Income Email">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Country" value="@Model.Country"
+                           placeholder="Country">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Province" value="@Model.Province"
+                           placeholder="Province">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.City" value="@Model.City"
+                           placeholder="City">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12 col-sm-6">
+                    <input type="tel" class="form-control" asp-for="@Model.Mobile" value="@Model.Mobile"
+                           placeholder="Mobile">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <input type="tel" class="form-control" asp-for="@Model.Mobile2" value="@Model.Mobile2"
+                           placeholder="Mobile 2">
+                </div>
+            </div>
+
+            <div class="form-group row g-0">
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.ExperienceYears" value="@Model.ExperienceYears"
+                           placeholder="Experience Years">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.CompletedProjects" value="@Model.CompletedProjects"
+                           placeholder="Completed Projects">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.SatisfiedCustomer" value="@Model.SatisfiedCustomer"
+                           placeholder="Satisfied Customer">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.Awards" value="@Model.Awards"
+                           placeholder="Awards">
+                </div>
+            </div>
+
+            <div class="form-group row g-0">
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Telegram" value="@Model.Telegram"
+                           placeholder="Telegram ID (example: telegram.my_id)">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Instagram" value="@Model.Instagram"
+                           placeholder="Instagram ID (example: instagram.my_id)">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Whatsapp" value="@Model.Whatsapp"
+                           placeholder="Whatsapp ID (example: whatsapp.my_id)">
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="@Model.CVFile" value="@Model.CVFile" />
+            <div class="form-group">
+                <label for="cvFile" class="form-label d-block w-100">
+                    CV File
+                    @if (!string.IsNullOrEmpty(Model.CVFile))
+                    {
+                        <a href="/owner/doc/@Model.CVFile">(Last CV preview)</a>
+                    }
+                    <input type="file" class="form-control" name="cvFile" id="cvFile" accept=".pdf">
+                </label>
+            </div>
+
+
+            <input type="hidden" asp-for="@Model.Avatar" value="@Model.Avatar" />
+            <div class="form-group">
+                <label for="avatar" class="form-label d-block w-100">
+                    Avatar
+                    <input type="file" class="form-control" name="avatar" id="avatar" accept=".jpg, .png, .jpeg">
+                </label>
+                <img src="/owner/img/thumbnails/@Model.Avatar" class="img-thumbnail d-block mt-2 mx-auto" width="200" id="thumbnailPreview" />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Edit Owner
+            </button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        avatar.onchange = evt => {
+            const [file] = avatar.files
+            if (file) {
+                thumbnailPreview.src = URL.createObjectURL(file);
+            } else {
+                thumbnailPreview.src = "";
+            }
+        }
+    </script>
+}

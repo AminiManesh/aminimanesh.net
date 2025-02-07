@@ -1,0 +1,43 @@
+﻿@using Aminimanesh.DataLayer.Entities.Owner
+@model Speech
+@{
+    ViewData["Title"] = "Add Speech";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Add a speech for your resume.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">Speech Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="Speech" asp-action="CreateSpeech" method="post">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <div class="form-group row">
+                <input type="text" class="form-control" asp-for="@Model.Text"
+                       placeholder="Speech Content">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <input type="number" class="form-control" asp-for="@Model.Priority" min="1" value="1"
+                           placeholder="Priority">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Add Speech
+            </button>
+        </form>
+    </div>
+</div>
+

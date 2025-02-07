@@ -1,0 +1,35 @@
+﻿@using Aminimanesh.Core.DTOs.SkillDTOs
+@model List<SkillListItemDTO>
+
+@foreach (var skill in Model)
+{
+    <!-- skill -->
+    <div class="sidebar-skill">
+        <div class="text">
+            <p dir="ltr">@skill.Title</p>
+            @switch (skill.Value)
+            {
+                case <= 20:
+                    <span>مبتدی</span>
+                    break;
+                case <= 40:
+                    <span>مقدماتی</span>
+                    break;
+                case <= 60:
+                    <span>متوسط</span>
+                    break;
+                case <= 90:
+                    <span>پیشرفته</span>
+                    break;
+                case <= 100:
+                    <span>متخصص</span>
+                    break;
+                default:
+                    break;
+            }
+        </div>
+        <div class="skill-bar" aria-valuenow="@skill.Value.Value">
+            <div></div>
+        </div>
+    </div>
+}

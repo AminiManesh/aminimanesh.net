@@ -1,0 +1,78 @@
+﻿@using Aminimanesh.Core.Convertors
+@using Aminimanesh.DataLayer.Entities.Owner
+@model List<Message>
+@{
+    ViewData["Title"] = "Messages";
+}
+
+@section Styles {
+    <!-- Custom styles for this page -->
+    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/lib/dropzone/dropzone.min.css" rel="stylesheet">
+    <link href="/lib/onyx/css/onyx.css" rel="stylesheet">
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    List of messages.
+</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">@ViewData["Title"]</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" id="messagesList">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Sender Name</th>
+                        <th>Sender Email</th>
+                        <th>Send Date</th>
+                        <th>Content</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var message in Model)
+                    {
+                        <tr>
+                            <td>@message.SenderName</td>
+                            <td>@message.SenderEmail</td>
+                            <td>@message.SendDate.Value.ToLongShamsi()</td>
+                            <td>@Html.Raw(message.Content)</td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Message" asp-action="DeleteMessage" asp-route-id="@message.MessageId" class="btn btn-danger btn-sm btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Delete</span>
+                                </a>
+                                <a asp-area="Admin" asp-controller="Message" asp-action="GetMessageInfo" asp-route-id="@message.MessageId" class="btn btn-info btn-sm btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-info-circle"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Info</span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <!-- Page level plugins -->
+    <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/admin/js/demo/datatables-demo.js"></script>
+
+}
+

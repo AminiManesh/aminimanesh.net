@@ -1,0 +1,45 @@
+﻿@using Aminimanesh.DataLayer.Entities.Owner
+@model Message
+@{
+    ViewData["Title"] = "Message Info";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Message Information.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-primary">
+        <h6 class="m-0 font-weight-bold text-white">Message Information</h6>
+    </div>
+    <div class="card-body">
+        <div class="row row-cols-1 row-cols-xl-2">
+            <div class="col">
+                <label>Sender Name: </label> @Model.SenderName<br>
+                <label>Sender Email: </label> @Model.SenderEmail<br>
+                <label>Sender Mobile: </label> @Model.SenderMobile<br>
+                <label>Content: </label> @Model.Content<br>
+                <label>Send Date: </label> @Model.SendDate<br>
+                <label>Deleted: </label> @Model.IsDeleted<br>
+            </div>
+            <div class="col">
+                <label>Remote IP Address: </label> @Model.RemoteIPAddress<br>
+                <label>Actual IP Address: </label> @Model.ActualIPAddress<br>
+                <label>Cloudflare Actual IP Address: </label> @Model.CloudflareActualIPAddress<br>
+                <label>Status: </label> @Model.IpApiResponse.Status<br>
+                <label>Continent: </label> @Model.IpApiResponse.Continent<br>
+                <label>Country: </label> @Model.IpApiResponse.Country<br>
+                <label>RegionName: </label> @Model.IpApiResponse.RegionName<br>
+                <label>City: </label> @Model.IpApiResponse.City<br>
+                <label>District: </label> @Model.IpApiResponse.District<br>
+                <label>Zip: </label> @Model.IpApiResponse.Zip<br>
+                <label>Lat: </label> @Model.IpApiResponse.Lat<br>
+                <label>Lon: </label> @Model.IpApiResponse.Lon<br>
+                <label>ISP: </label> @Model.IpApiResponse.ISP<br>
+                <label>Query: </label> @Model.IpApiResponse.Query<br>
+            </div>
+        </div>
+    </div>
+</div>

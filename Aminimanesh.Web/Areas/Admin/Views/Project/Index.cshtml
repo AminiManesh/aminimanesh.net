@@ -1,0 +1,158 @@
+﻿@using Aminimanesh.Core.DTOs.ProjectDTOs
+@model List<ProjectListItemDTO>
+@{
+    ViewData["Title"] = "Projects List";
+}
+
+@section Styles {
+    <!-- Custom styles for this page -->
+    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/lib/dropzone/dropzone.min.css" rel="stylesheet">
+    <link href="/lib/onyx/css/onyx.css" rel="stylesheet">
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    List of your projects you added to your resume.
+</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">@ViewData["Title"]</h6>
+        <a href="/create-project" class="btn btn-success btn-sm btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="bi bi-plus-circle-fill"></i>
+            </span>
+            <span class="text">Add Project</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" id="projectsList">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Thumbnail</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var project in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="/owner/projects/@project.ProjectId/cover/thumbnail/@project.Thumbnail" width="125" />
+                            </td>
+                            <td>@project.Title</td>
+                            <td>@project.CategoryTitle</td>
+                            <td>@project.Priority</td>
+                            <th>
+                                <a class="btn btn-success btn-sm btn-icon-split open-attachment" data-toggle="modal" data-target="#attachment-modal" data-projectid="@project.ProjectId">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-paperclip"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Add Attachments</span>
+                                </a>
+                                <a asp-area="Admin" asp-controller="Project" asp-action="EditProject" asp-route-id="@project.ProjectId" class="btn btn-info btn-sm btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Edit Project</span>
+                                </a>
+                                <a asp-area="Admin" asp-controller="Project" asp-action="DeleteProject" asp-route-id="@project.ProjectId" class="btn btn-danger btn-sm btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Delete Project</span>
+                                </a>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Modals {
+
+    <div class="modal fade dark-modal" id="attachment-modal" tabindex="-1" aria-labelledby="attachmentModal"
+         aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Project Attachments</h4>
+                    <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Wrapper -->
+                    <div class="wrapper onyx-container">
+
+                        <form class="dropzone files-container" enctype="multipart/form-data" asp-area="Admin" asp-controller="Post" asp-action="UploadAttachments" method="post">
+                            <div class="fallback">
+                                <input name="attachmentFiles" type="file" />
+                            </div>
+                        </form>
+
+                        <!-- Notes -->
+                        <span class="file-types d-block"></span>
+                        <span>Maximum file size is 1024MB.</span>
+
+                        <!-- Uploaded files section -->
+                        <h4 class="section-sub-title"><span>Uploaded</span> Files (<span class="uploaded-files-count">0</span>)</h4>
+                        <span class="no-files-uploaded">No files uploaded yet.</span>
+
+                        <!-- Preview collection of uploaded documents -->
+                        <div class="preview-container dz-preview uploaded-files">
+                            <div id="previews">
+                                <div id="onyx-dropzone-template">
+                                    <div class="onyx-dropzone-info">
+                                        <div class="thumb-container">
+                                            <img data-dz-thumbnail />
+                                        </div>
+                                        <div class="details">
+                                            <div>
+                                                <span data-dz-name></span> <span data-dz-size></span>
+                                            </div>
+                                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                            <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                            <div class="actions">
+                                                <a href="#!" data-dz-remove><i class="fa fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Warnings -->
+                        <div id="warnings">
+                            <span>Warnings will go here!</span>
+                        </div>
+
+                    </div>
+                    <!-- /Wrapper -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+   
+
+    <!-- Page level plugins -->
+    <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/admin/js/demo/datatables-demo.js"></script>
+
+}

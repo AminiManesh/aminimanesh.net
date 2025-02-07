@@ -1,0 +1,19 @@
+﻿@using Aminimanesh.Core.DTOs.ServiceDTOs
+@model List<ServiceListItemDTO>
+
+<h2 class="main-section-heading">خدمات من</h2>
+<div class="row g-4">
+    @foreach (var service in Model)
+    {
+        <!-- service -->
+        <div class="col col-12 col-md-6 col-lg-4">
+            <article class="service">
+                <div>
+                    <h3 class="mini-header">@service.Title</h3>
+                    <p class="description">@service.Description</p>
+                </div>
+                <a class="primary-link read-more-link" href="#contact" title="سفارش @service.Title">ارسال سفارش<i class="bi bi-chevron-left"></i></a>
+            </article>
+        </div>
+    }
+</div>

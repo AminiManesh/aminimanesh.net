@@ -1,0 +1,28 @@
+﻿@using Aminimanesh.Core.DTOs.UserDTOs
+@model LoginDTO
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form asp-controller="User" asp-action="Login" method="post" class="send-message-form">
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" asp-validation-summary="All" data-bs-theme="dark"></div>
+    }
+
+    <div class="input-box">
+        <label>
+            <i class="bi bi-person"></i>
+        </label>
+        <input asp-for="@Model.UserName" class="inputter" type="text" placeholder="نام کاربری" />
+    </div>
+    <div class="input-box">
+        <label>
+            <i class="bi bi-key"></i>
+        </label>
+        <input asp-for="@Model.Pasword" type="password" class="inputter" rows="6" placeholder="رمز عبور" />
+    </div>
+
+    <button class="big-button d-block w-100">ورود</button>
+</form>

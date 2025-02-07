@@ -1,0 +1,11 @@
+﻿@using Aminimanesh.Core.DTOs.SkillDTOs
+@model List<SkillListItemDTO>
+
+@foreach (var item in Model)
+{
+    <!-- mini skill -->
+    <div>
+        <i class="bi bi-check"></i>
+        <span dir="ltr">@item.Title</span>
+    </div>
+}

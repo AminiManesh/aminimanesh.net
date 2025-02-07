@@ -1,0 +1,20 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Owner Exists";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Website already has an owner.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">Website already has owner</h6>
+    </div>
+    <div class="card-body">
+        The website already has an owner. If you want, you can change the information of the current owner of the site as you like form this 
+        <a asp-area="Admin" asp-controller="Owner" asp-action="EditOwner">link</a>.
+    </div>
+</div>

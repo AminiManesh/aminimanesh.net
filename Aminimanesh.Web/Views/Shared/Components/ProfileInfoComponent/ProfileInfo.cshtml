@@ -1,0 +1,19 @@
+﻿@using Aminimanesh.Core.DTOs.OwnerDTOs
+@model ProfileInfoDTO
+
+<div class="profile-image">
+    <img src="/owner/img/@Model.Avatar" alt="محمد امین امینی منش" title="محمد امین امینی منش">
+    <span class="status beat">
+        <span class="availability">من برای همکاری و گرفتن پروژه آماده ام !</span>
+    </span>
+</div>
+<a asp-controller="Home" asp-action="Index" title="محمد امین امینی منش">
+    <h2 class="fullname">@Model.FullName</h2>
+</a>
+<h3 class="main-job">@Model.FirstJob</h3>
+<h3 class="secondry-job">@Model.SecondJob</h3>
+<!-- CV download link -->
+<a class="big-button download-cv" asp-controller="Owner" asp-action="DownloadCV" title="دانلود رزومه من">
+    <i class="bi bi-download"></i>
+    دانلود رزومه‌ی من
+</a>

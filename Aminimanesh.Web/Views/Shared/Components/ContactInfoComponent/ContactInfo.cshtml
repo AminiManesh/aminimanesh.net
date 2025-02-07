@@ -1,0 +1,56 @@
+﻿@using Aminimanesh.Core.DTOs.OwnerDTOs
+@model ContactInfoDTO
+
+<div class="row g-4">
+    <!-- single contact information -->
+    <div class="col col-12 col-md-6 col-xxl-4">
+        <div class="contact-info">
+            <div>
+                <span class="primary-label">کشور:</span>
+                <span class="secondary-label">@Model.Country</span>
+            </div>
+            <div>
+                <span class="primary-label">استان:</span>
+                <span class="secondary-label">@Model.Province</span>
+            </div>
+            <div>
+                <span class="primary-label">شهر:</span>
+                <span class="secondary-label">@Model.City</span>
+            </div>
+        </div>
+    </div>
+    <!-- single contact information -->
+    <div class="col col-12 col-md-6 col-xxl-4">
+        <div class="contact-info">
+            <div>
+                <span class="primary-label">تلگرام:</span>
+                <a href="https://t.me/@Model.Telegram" class="primary-link p-0" title="تلگرام">@Model.Telegram</a>
+            </div>
+            <div>
+                <span class="primary-label">واتساپ:</span>
+                <a href="https://wa.me/@Model.Whatsapp" class="primary-link p-0" title="واتساپ">@Model.Whatsapp</a>
+            </div>
+            <div>
+                <span class="primary-label">اینستاگرام:</span>
+                <a href="https://www.instagram.com/@Model.Instagram/" class="primary-link p-0" title="اینستاگرام">@Model.Instagram</a>
+            </div>
+        </div>
+    </div>
+    <!-- single contact information -->
+    <div class="col col-12 col-md-6 col-xxl-4">
+        <div class="contact-info">
+            <div>
+                <span class="primary-label">ایمیل:</span>
+                <a href="mailto:@Model.Email" class="primary-link p-0" title="ایمیل">@Model.Email</a>
+            </div>
+            <div>
+                <span class="primary-label">تلفن همراه:</span>
+                <a href="tel:@Model.Mobile" class="primary-link p-0" title="موبایل">@Model.Mobile</a>
+            </div>
+            <div>
+                <span class="primary-label">تلفن همراه 2:</span>
+                <a href="tel:@Model.Mobile2" class="primary-link p-0" title="موبایل">@Model.Mobile2</a>
+            </div>
+        </div>
+    </div>
+</div>

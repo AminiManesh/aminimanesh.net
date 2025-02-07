@@ -1,0 +1,15 @@
+﻿@using Aminimanesh.Core.DTOs.LanguageDTOs
+ @model List<LanguageListItemDTO>
+
+<div class="row g-0">
+    @foreach (var lang in Model)
+    {
+        <!-- language -->
+        <div class="col col-4">
+            <div class="language">
+                <div class="lang-progress" role="progressbar" aria-valuenow="@lang.Value" aria-valuemin="0" aria-valuemax="100">@lang.Value%</div>
+                <p>@lang.Title</p>
+            </div>
+        </div>
+    }
+</div>

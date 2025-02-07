@@ -1,0 +1,291 @@
+﻿@using Aminimanesh.Core.DTOs.ProjectDTOs
+@model EditProjectDTO
+@{
+    ViewData["Title"] = "Edit Project";
+}
+
+@section Styles {
+    <!-- Custom styles for this page -->
+    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/lib/dropzone/dropzone.min.css" rel="stylesheet">
+    <link href="/lib/onyx/css/onyx.css" rel="stylesheet">
+
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* Editing area */
+            min-height: 500px;
+        }
+    </style>
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Edit this project for your resume.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">Project Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="Project" asp-action="EditProject" method="post" enctype="multipart/form-data">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="@Model.ProjectId" value="@Model.ProjectId" />
+
+            <div class="form-group row">
+                <div class="col-sm-4 mb-3 mb-sm-0">
+                    <input type="text" class="form-control" asp-for="@Model.Title" value="@Model.Title"
+                           placeholder="Project Title">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.CustomerName" value="@Model.CustomerName"
+                           placeholder="Customer Name">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.WebsiteCategory" value="@Model.WebsiteCategory"
+                           placeholder="Usage Category">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" asp-for="@Model.ShortDescription" value="@Model.ShortDescription"
+                       placeholder="Short Description">
+            </div>
+            <div class="form-group">
+                <textarea class="html-editor form-control" asp-for="@Model.Description" placeholder="Description" value="@Model.Description"></textarea>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4 mb-3 mb-sm-0">
+                    <input type="text" class="form-control" asp-for="@Model.OrderDate" value="@Model.OrderDate"
+                           placeholder="Order Date (yyyy/MM/dd)">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.FinishDate" value="@Model.FinishDate"
+                           placeholder="Finish Date (yyyy/MM/dd)">
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control" asp-for="@Model.CategoryId" asp-items="@ViewData["Categories"] as SelectList"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <input type="url" class="form-control" asp-for="@Model.Url"
+                           placeholder="Project Url">
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="@Model.Thumbnail" value="@Model.Thumbnail" />
+            <div class="form-group">
+                <label for="cover" class="form-label d-block w-100">
+                    Thumbnail
+                    <input type="file" class="form-control" name="cover" id="cover" accept=".jpg, .png, .jpeg, .webp">
+                </label>
+                <img src="/owner/projects/@Model.ProjectId/cover/thumbnail/@Model.Thumbnail" class="img-thumbnail d-block mt-2 mx-auto" width="600" id="thumbnailPreview" />
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <input type="number" class="form-control" asp-for="@Model.Priority" min="1" value="@Model.Priority"
+                           placeholder="Priority">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox small">
+                    <input type="checkbox" class="custom-control-input" asp-for="@Model.IsFinished" value="@Model.IsFinished">
+                    <label class="custom-control-label" asp-for="@Model.IsFinished">
+                        Is Finished
+                    </label>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseCardExample" class="d-block card-header bg-success py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-white">Attachments</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardExample" style="">
+                    <div class="card-body">
+                        <div class="table-responsive" id="projectsList">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Thumbnail</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Priority</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var attachment in Model.Attachments)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @if (attachment.IsImage)
+                                                {
+                                                    <img src="/owner/projects/@attachment.ProjectId/attachments/thumbnails/@attachment.FileName" width="125" />
+                                                }
+                                                else
+                                                {
+                                                    <strong class="text-lg">@System.IO.Path.GetExtension(attachment.FileName)</strong>
+                                                }
+                                            </td>
+                                            <td>@attachment.ShowName</td>
+                                            <td>@attachment.ShortDescription</td>
+                                            <td>@attachment.Priority</td>
+                                            <th>
+                                                <a asp-area="Admin" asp-controller="Project" asp-action="DownloadAttachment" asp-route-id="@attachment.AttachmentId" class="btn btn-success btn-sm btn-icon-split open-attachment">
+                                                    <span class="icon text-white-50">
+                                                        <i class="bi bi-download"></i>
+                                                    </span>
+                                                    <span class="text d-none d-lg-flex">Download Attachment</span>
+                                                </a>
+                                                <button type="button" onclick="openEditAttchmentModal(@attachment.AttachmentId, '@attachment.ShowName', '@attachment.ShortDescription', @attachment.Priority)" class="btn btn-info btn-sm btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="bi bi-pencil-fill"></i>
+                                                    </span>
+                                                    <span class="text d-none d-lg-flex">Edit Attachment</span>
+                                                </button>
+                                                <a onclick="deleteAttachment(@attachment.AttachmentId)" class="btn btn-danger btn-sm btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </span>
+                                                    <span class="text d-none d-lg-flex">Delete Attachment</span>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Edit Project
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Modals {
+    <!-- Edfit Attachment Modal-->
+    <div class="modal fade" id="editAttachmentModal" tabindex="-1" role="dialog" aria-labelledby="editAttachmentModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="user" method="post" id="editAttachmentForm">
+                        <input type="hidden" name="attachmentId">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="showName" placeholder="Show Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="shortDes" placeholder="Short Description">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-3">
+                                <input type="number" class="form-control" name="priority" min="1" value="1"
+                                       placeholder="Priority">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row row-cols-2 w-100 g-1">
+                        <div class="col">
+                            <button class="btn btn-outline-danger btn-block" type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-success btn-block" onclick="submitEditAttachment(event)">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <!-- Page level plugins -->
+    <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/admin/js/demo/datatables-demo.js"></script>
+
+    <script>
+
+        function openEditAttchmentModal(attachmentId, attachmentName, shortDes, priority) {
+            $('#editModalLabel').text(attachmentName);
+
+            $('#editAttachmentForm input[name="attachmentId"]').val(attachmentId);
+            $('#editAttachmentForm input[name="showName"]').val(attachmentName);
+            $('#editAttachmentForm input[name="shortDes"]').val(shortDes);
+            $('#editAttachmentForm input[name="priority"]').val(priority);
+
+            $("#editAttachmentModal").modal('show');
+        }
+
+        function submitEditAttachment(e) {
+            e.preventDefault();
+
+            var attachmentId = $('#editAttachmentForm input[name="attachmentId"]').val();
+            var attachmentName = $('#editAttachmentForm input[name="showName"]').val();
+            var shortDes = $('#editAttachmentForm input[name="shortDes"]').val();
+            var priority = $('#editAttachmentForm input[name="priority"]').val();
+
+            $.ajax({
+                type: 'post',
+                url: '/edit-attachment?attachmentId=' + attachmentId + "&attachmentName=" + attachmentName + "&shortDescription=" + shortDes + "&priority=" + priority,
+                success: function (response) {
+                    if (response.success) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+        cover.onchange = evt => {
+            const [file] = cover.files
+            if (file) {
+                thumbnailPreview.src = URL.createObjectURL(file);
+            } else {
+                thumbnailPreview.src = "";
+            }
+        }
+
+        function deleteAttachment(id) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/delete-attachment?id=' + id,
+                success: function (response) {
+                    if (response.success === true) {
+                        Swal.fire({
+                            title: "Removed !",
+                            text: response.message,
+                            confirmButtonText: "OK",
+                            icon: "info"
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        }
+
+    </script>
+}

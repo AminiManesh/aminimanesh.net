@@ -1,0 +1,78 @@
+﻿@using Aminimanesh.Core.DTOs.LanguageDTOs
+@model List<LanguageListItemDTO>
+@{
+    ViewData["Title"] = "Languages";
+}
+
+@section Styles {
+    <!-- Custom styles for this page -->
+    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/lib/dropzone/dropzone.min.css" rel="stylesheet">
+    <link href="/lib/onyx/css/onyx.css" rel="stylesheet">
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    List of your languages you added to your resume.
+</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">@ViewData["Title"]</h6>
+        <a asp-area="Admin" asp-controller="Language" asp-action="CreateLanguage" class="btn btn-success btn-sm btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="bi bi-plus-circle-fill"></i>
+            </span>
+            <span class="text">Add Language</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" id="languagesList">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Level</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var lang in Model)
+                    {
+                        <tr>
+                            <td>@lang.Title</td>
+                            <td>@lang.Value</td>
+                            <th>
+                                <a asp-area="Admin" asp-controller="Language" asp-action="EditLanguage" asp-route-id="@lang.LanguageId" class="btn btn-info btn-sm btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Edit Language</span>
+                                </a>
+                                <a asp-area="Admin" asp-controller="Language" asp-action="DeleteLanguage" asp-route-id="@lang.LanguageId" class="btn btn-danger btn-sm btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </span>
+                                    <span class="text d-none d-lg-flex">Delete Language</span>
+                                </a>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <!-- Page level plugins -->
+    <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/admin/js/demo/datatables-demo.js"></script>
+
+}

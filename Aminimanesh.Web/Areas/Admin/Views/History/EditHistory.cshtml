@@ -1,0 +1,84 @@
+﻿@using Aminimanesh.DataLayer.Entities.Owner
+@model History
+@{
+    ViewData["Title"] = "Edit History";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Edit this history for your resume.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">History Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="History" asp-action="EditHistory" method="post" enctype="multipart/form-data">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="@Model.HistoryId" value="@Model.HistoryId"/>
+
+            <input type="hidden" asp-for="@Model.HistoryLineId" value="@Model.HistoryLineId" />
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="@Model.Title" value="@Model.Title"
+                           placeholder="History Title">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="@Model.Adjective" value="@Model.Adjective"
+                           placeholder="History Adjective">
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" asp-for="@Model.Description" placeholder="Description" value="@Model.Description"></textarea>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="@Model.StartTime" value="@Model.StartTime"
+                           placeholder="Order Date (yyyy/MM/dd)">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="@Model.EndTime" value="@Model.EndTime"
+                           placeholder="Finish Date (yyyy/MM/dd)">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="@Model.LinkLabel" value="@Model.LinkLabel"
+                           placeholder="Link Label">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="@Model.LinkAddress" value="@Model.LinkAddress"
+                           placeholder="Link Address">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="custom-control custom-checkbox small">
+                    <input type="checkbox" class="custom-control-input" asp-for="@Model.Finished" value="@Model.Finished">
+                    <label class="custom-control-label" asp-for="@Model.Finished">
+                        Finished
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <input type="number" class="form-control" asp-for="@Model.Priority" min="1" value="@Model.Priority"
+                           placeholder="Priority">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Edit History
+            </button>
+        </form>
+    </div>
+</div>

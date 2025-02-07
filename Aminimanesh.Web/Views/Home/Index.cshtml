@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "صفحه اصلی";
+    var currentUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}";
+    var siteUrl = $"{Context.Request.Scheme}://{Context.Request.Host}";
+}
+
+@section MetaTags {
+    <meta name="description" content="محمد امین امینی منش، برنامه‌نویس سی‌شارپ و توسعه‌دهنده بک‌اند با چندین سال تجربه. علاقه‌مند به حل چالش‌ها و پیشرفت مستمر در مهارت‌های تکنیکال و تیمی.">
+    <meta name="keywords" content="امینی منش, Amini Manesh, back-end developer, برنامه نویس, توسعه دهنده بک‌اند, برنامه نویس سی‌شارپ, csharp programmer">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="@currentUrl">
+    <meta property="og:site_name" value="امینی منش">
+    <meta property="og:title" content="محمد امین امینی منش - توسعه دهنده بک اند">
+    <meta property="og:url" content="@currentUrl">
+    <meta property="og:image" content="@siteUrl/img/discover-min.jpg">
+    <meta property="og:image:url" content="@siteUrl/img/discover-min.jpg">
+    <meta property="og:image:width" content="700">
+    @*<meta property="og:image:height" content="500">*@
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:description" content="محمد امین امینی منش، برنامه‌نویس سی‌شارپ و توسعه‌دهنده بک‌اند با چندین سال تجربه. علاقه‌مند به حل چالش‌ها و پیشرفت مستمر در مهارت‌های تکنیکال و تیمی.">
+    <meta property="og:price:currency" content="IRR">
+    <meta property="og:locale" content="ir_FA">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="محمد امین امینی منش - توسعه دهنده بک اند">
+    <meta name="twitter:description" content="محمد امین امینی منش، برنامه‌نویس سی‌شارپ و توسعه‌دهنده بک‌اند با چندین سال تجربه. علاقه‌مند به حل چالش‌ها و پیشرفت مستمر در مهارت‌های تکنیکال و تیمی.">
+    <meta name="twitter:image" content="@siteUrl/img/discover-min.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="محمد امین امینی منش، برنامه‌نویس سی‌شارپ و توسعه‌دهنده بک‌اند با چندین سال تجربه. علاقه‌مند به حل چالش‌ها و پیشرفت مستمر در مهارت‌های تکنیکال و تیمی.">
+}
+
+<!-- landing -->
+<section class="landing" id="landing">
+    <section class="discover row">
+        <div class="col col-md-8 col-lg-12 col-xl-10 col-xxl-8">
+            <h1>معرفی محمد امین امینی منش! همین الان نمونه کارهام رو ببین.</h1>
+            <p class="code" dir="ltr">
+                &lt;<span class="highlight">code</span>&gt;
+                <span class="text-pointer"></span>
+                <span class="speech" dir="rtl"></span>
+                &lt;/<span class="highlight">code</span>&gt;
+            </p>
+            <a href="#portfolio" class="big-button portfolio-button" title="نمونه کار‌های من">نمونه کار‌های من</a>
+        </div>
+    </section>
+    <section class="work-stats">
+        @await Component.InvokeAsync("ExperienceInfoComponent")
+    </section>
+</section>
+
+<!-- services -->
+<section class="services" id="services">
+    @await Component.InvokeAsync("ServicesComponent")
+</section>
+
+<section class="portfolio" id="portfolio">
+    <h2 class="main-section-heading">نمونه کارها</h2>
+    <div class="portfolio-categories">
+        @await Component.InvokeAsync("CategoriesComponent")
+    </div>
+    <div class="row g-4" id="projectsList">
+    </div>
+</section>
+
+<section class="timelines" id="timelines">
+    @await Component.InvokeAsync("HistoryLinesComponent")
+</section>
+
+<!-- contact section -->
+<section class="contact" id="contact">
+
+    <!-- contact informations -->
+    <section class="contact-infos">
+        <h2 class="main-section-heading">اطلاعات تماس</h2>
+        @await Component.InvokeAsync("ContactInfoComponent")
+    </section>
+
+    <!-- send message form (get in touch) -->
+    <section class="send-message">
+        <h2 class="main-section-heading">در تماس باشید</h2>
+        <form method="post" class="send-message-form" id="messageForm">
+
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <div class="input-box">
+                <label>
+                    <i class="bi bi-person-fill"></i>
+                </label>
+                <input name="fullName" id="fullName" class="inputter" type="text" placeholder="نام و نام‌خانوادگی" />
+            </div>
+            <div class="input-box">
+                <label>
+                    <i class="bi bi-at"></i>
+                </label>
+                <input name="email" id="email" class="inputter" type="text" placeholder="ایمیل" />
+            </div>
+            <div class="input-box">
+                <label>
+                    <i class="bi bi-phone-fill"></i>
+                </label>
+                <input name="mobile" id="mobile" class="inputter" type="text" placeholder="موبایل" />
+            </div>
+            <div class="input-box">
+                <label>
+                    <i class="bi bi-envelope-fill"></i>
+                </label>
+                <textarea name="content" id="content" class="inputter" rows="6" placeholder="متن پیام"></textarea>
+            </div>
+
+            <button type="submit" class="big-button" id="btnSendMessage">ارسال پیام</button>
+        </form>
+    </section>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+
+        $(document).ready(function () {
+
+            $("#btnSendMessage").on('click', function (event) {
+                event.preventDefault();
+
+                var formData = {
+                    SenderName: $("#fullName").val(),
+                    SenderEmail: $("#email").val(),
+                    SenderMobile: $("#mobile").val(), 
+                    Content: $("#content").val()
+                };
+
+                $.ajax({
+                    type: 'post',
+                    url: '/send-message',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success === true) {
+                            Swal.fire({
+                                title: "ارسال شد!",
+                                text: response.message,
+                                confirmButtonText: "باشه",
+                                icon: "success"
+                            });
+
+                            $("#messageForm")[0].reset();
+                        } else {
+                            Swal.fire({
+                                title: "خطا",
+                                text: response.message,
+                                confirmButtonText: "باشه",
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

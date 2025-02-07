@@ -1,0 +1,27 @@
+﻿@using Aminimanesh.DataLayer.Entities.User
+@model User
+@{
+    ViewData["Title"] = "User Info";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Admin user info.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-info">
+        <h6 class="m-0 font-weight-bold text-white">User Information</h6>
+    </div>
+    <div class="card-body">
+        <label class="mb-0"><strong>Username: </strong></label>
+        <p>@Model.UserName</p>
+
+        <label class="mb-0"><strong>Email: </strong></label>
+        <p>@Model.Email</p>
+
+        <a class="btn btn-warning btn-user" asp-area="Admin" asp-controller="User" asp-action="ChangeCredentials">Change Login Credentials</a>
+    </div>
+</div>
+

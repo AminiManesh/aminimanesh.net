@@ -1,0 +1,224 @@
+﻿<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="" asp-controller="Home" asp-action="Index">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3 text-nowrap">Amini Manesh</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Owner
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOwner"
+           aria-expanded="true" aria-controls="collapseOwner">
+            <i class="bi bi-person-fill"></i>
+            <span>Owner</span>
+        </a>
+        <div id="collapseOwner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Owner" asp-action="Index">Information</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Owner" asp-action="CreateOwner">Add Owner</a>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Owner" asp-action="EditOwner">Edit Owner</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="bi bi-file-earmark-code-fill"></i>
+            <span>Projects</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Project" asp-action="Index">Projects List</a>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Project" asp-action="Categories">Categories List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Project" asp-action="CreateProject">Add Project</a>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Project" asp-action="CreateCategory">Add Category</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSkill"
+           aria-expanded="true" aria-controls="collapseSkill">
+            <i class="bi bi-mortarboard-fill"></i>
+            <span>Skills</span>
+        </a>
+        <div id="collapseSkill" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Skill" asp-action="Index">Skills List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Skill" asp-action="CreateSkill">Add Skill</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServices"
+           aria-expanded="true" aria-controls="collapseServices">
+            <i class="bi bi-wrench-adjustable"></i>
+            <span>Services</span>
+        </a>
+        <div id="collapseServices" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Service" asp-action="Index">Services List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Service" asp-action="CreateService">Add Service</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLang"
+           aria-expanded="true" aria-controls="collapseLang">
+            <i class="bi bi-translate"></i>
+            <span>Languages</span>
+        </a>
+        <div id="collapseLang" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Language" asp-action="Index">Languages List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Language" asp-action="CreateLanguage">Add Language</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHistory"
+           aria-expanded="true" aria-controls="collapseHistory">
+            <i class="bi bi-clock-history"></i>
+            <span>Histories</span>
+        </a>
+        <div id="collapseHistory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="History" asp-action="Index">History Lines List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="History" asp-action="CreateHistoryLine">Add History Line</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocial"
+           aria-expanded="true" aria-controls="collapseSocial">
+            <i class="bi bi-share-fill"></i>
+            <span>Socials</span>
+        </a>
+        <div id="collapseSocial" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Social" asp-action="Index">Socials List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Social" asp-action="CreateSocial">Add Social</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSpeech"
+           aria-expanded="true" aria-controls="collapseSpeech">
+            <i class="bi bi-cursor-text"></i>
+            <span>Speechs</span>
+        </a>
+        <div id="collapseSpeech" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Speech" asp-action="Index">Speechs List</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Speech" asp-action="CreateSpeech">Add Speech</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Message
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMessage"
+           aria-expanded="true" aria-controls="collapseMessage">
+            <i class="bi bi-envelope-paper-fill"></i>
+            <span>Messages</span>
+        </a>
+        <div id="collapseMessage" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Message" asp-action="Index">Messages</a>
+                <a class="collapse-item" asp-area="Admin" asp-controller="Message" asp-action="GetDeletedMessages">Deleted Messages</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Security
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSecurity"
+           aria-expanded="true" aria-controls="collapseSecurity">
+            <i class="bi bi-key-fill"></i>
+            <span>Login Credentials</span>
+        </a>
+        <div id="collapseSecurity" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Views:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="User" asp-action="UserInfo">User Info</a>
+                <h6 class="collapse-header">Actions:</h6>
+                <a class="collapse-item" asp-area="Admin" asp-controller="User" asp-action="ChangeCredentials">Change Credentials</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>

@@ -1,0 +1,15 @@
+﻿@model int
+@{
+    ViewData["Title"] = $"خطای {Model}";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/error-page.css">
+}
+
+<section class="error-container">
+    <h1>خطای <span class="error-code">@Model</span></h1>
+    <h2>@Model!</h2>
+
+    <a class="big-button" asp-action="Index" asp-controller="Home" asp-area="">بازگشت به صفحه اصلی</a>
+</section>

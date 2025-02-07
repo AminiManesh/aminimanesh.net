@@ -1,0 +1,28 @@
+﻿@using Aminimanesh.Core.DTOs.OwnerDTOs
+@model ExperienceInfoDTO
+<div class="row g-0">
+    <div class="col col-6 col-md-6 col-lg-3">
+        <div class="work-stat">
+            <span dir="ltr">@Model.ExperienceYears +</span>
+            <label>سال تجربه</label>
+        </div>
+    </div>
+    <div class="col col-6 col-md-6 col-lg-3">
+        <div class="work-stat">
+            <span dir="ltr">@Model.CompletedProjects</span>
+            <label>پروژه کامل شده</label>
+        </div>
+    </div>
+    <div class="col col-6 col-md-6 col-lg-3">
+        <div class="work-stat">
+            <span dir="ltr">@Model.SatisfiedCustomer</span>
+            <label>مشتری خوشحال</label>
+        </div>
+    </div>
+    <div class="col col-6 col-md-6 col-lg-3">
+        <div class="work-stat">
+            <span dir="ltr">@Model.Awards +</span>
+            <label>جوایز و افتخارات</label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffc107" />
+    <title>محمد امین امینی منش توسعه دهنده بک‌اند | @ViewData["Title"]</title>
+
+    <!-- styles -->
+    <partial name="_Styles" />
+    @RenderSection("Styles", required: false)
+    @RenderSection("MetaTags", required: false)
+</head>
+<body>
+    <!-- General Container Of Resume -->
+    <div class="general-container container-fluid">
+        <!-- Resume Sidebar -->
+        <partial name="_Sidebar" />
+        <!-- Main container of resume -->
+        <main class="main-section" id="main-section">
+            <!-- background -->
+            <div class="main-background"></div>
+            <!-- dark overlay (It appears when the main menu is opened) -->
+            <div class="dark-overlay"></div>
+            <div class="main-curtain">
+                @RenderBody()
+                <partial name="_Footer" />
+            </div>
+        </main>
+        <!-- menu -->
+        <partial name="_Header" />
+    </div>
+    <!-- scripts -->
+    <partial name="_Scripts" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

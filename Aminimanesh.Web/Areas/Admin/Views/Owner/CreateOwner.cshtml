@@ -1,0 +1,149 @@
+﻿@using Aminimanesh.Core.DTOs.OwnerDTOs
+@model CreateOwnerDTO
+@{
+    ViewData["Title"] = "Add Owner";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewData["Title"]</h1>
+<p class="mb-4">
+    Add your main information.
+</p>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-primary">
+        <h6 class="m-0 font-weight-bold text-white">Owner Information</h6>
+    </div>
+    <div class="card-body">
+        <form class="user" asp-area="Admin" asp-controller="Owner" asp-action="CreateOwner" method="post" enctype="multipart/form-data">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" data-bs-theme="dark" asp-validation-summary="All"></div>
+            }
+
+            <div class="form-group row g-0">
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.FullName"
+                           placeholder="Fullname">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="number" class="form-control" asp-for="@Model.Age"
+                           placeholder="Age" min="1" max="100">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.FirstJob"
+                           placeholder="Main Job">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.SecondJob"
+                           placeholder="Side Job">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12 col-sm-6">
+                    <input type="email" class="form-control" asp-for="@Model.Email"
+                           placeholder="Email">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <input type="email" class="form-control" asp-for="@Model.IncomeEmail"
+                           placeholder="Income Email">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Country"
+                           placeholder="Country">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Province"
+                           placeholder="Province">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.City"
+                           placeholder="City">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12 col-sm-6">
+                    <input type="tel" class="form-control" asp-for="@Model.Mobile"
+                           placeholder="Mobile">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <input type="tel" class="form-control" asp-for="@Model.Mobile2"
+                           placeholder="Mobile 2">
+                </div>
+            </div>
+
+            <div class="form-group row g-0">
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.ExperienceYears"
+                           placeholder="Experience Years">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.CompletedProjects"
+                           placeholder="Completed Projects">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.SatisfiedCustomer"
+                           placeholder="Satisfied Customer">
+                </div>
+                <div class="col-6 col-sm-3">
+                    <input type="text" class="form-control" asp-for="@Model.Awards"
+                           placeholder="Awards">
+                </div>
+            </div>
+
+            <div class="form-group row g-0">
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Telegram"
+                           placeholder="Telegram ID (example: telegram.my_id)">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Instagram"
+                           placeholder="Instagram ID (example: instagram.my_id)">
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" asp-for="@Model.Whatsapp"
+                           placeholder="Whatsapp ID (example: whatsapp.my_id)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cvFile" class="form-label d-block w-100">
+                    CV File
+                    <input type="file" class="form-control" name="cvFile" id="cvFile" accept=".pdf">
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="avatar" class="form-label d-block w-100">
+                    Avatar
+                    <input type="file" class="form-control" name="avatar" id="avatar" accept=".jpg, .png, .jpeg">
+                </label>
+                <img src="" class="img-thumbnail d-block mt-2 mx-auto" width="200" id="thumbnailPreview" />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-user btn-block">
+                Add Owner
+            </button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        avatar.onchange = evt => {
+            const [file] = avatar.files
+            if (file) {
+                thumbnailPreview.src = URL.createObjectURL(file);
+            } else {
+                thumbnailPreview.src = "";
+            }
+        }
+    </script>
+}

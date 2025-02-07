@@ -1,0 +1,29 @@
+﻿@using Aminimanesh.Core.DTOs.ProjectDTOs
+@model List<ProjectListItemDTO>
+
+@if(Model != null && Model.Any())
+{
+    @foreach (var proj in Model)
+    {
+        <!-- work -->
+        <div class="col col-12 col-md-6 col-xl-4">
+            <article class="work">
+                <a href="#" title="@proj.Title" class="open-image" data-fancybox="gallery-@proj.ProjectId" data-caption="@proj.ShortDescription" data-src="/owner/projects/@proj.ProjectId/cover/@proj.Thumbnail">
+                    <span class="expander"><i class="bi bi-fullscreen"></i></span>
+                    <img class="img-fluid" src="/owner/projects/@proj.ProjectId/cover/thumbnail/@proj.Thumbnail" alt="@proj.Title" title="@proj.Title">
+                </a>
+                <div class="work-body">
+                    <h3 class="mini-header">@proj.Title</h3>
+                    <p class="description">@proj.ShortDescription</p>
+                    <a title="مشاهده @proj.Title" class="read-more-link primary-link" asp-controller="Project" asp-action="ShowProject" asp-route-name="@proj.UrlTitle">اطلاعات بیشتر<i class="bi bi-chevron-left"></i></a>
+                </div>
+            </article>
+        </div>
+    }
+}
+else
+{
+    <div class="col col-12">
+        <div class="alert alert-info" data-bs-theme="dark">در حال حاضر نمونه‌کار با این دسته بندی وجود ندارد.</div>
+    </div>
+}
