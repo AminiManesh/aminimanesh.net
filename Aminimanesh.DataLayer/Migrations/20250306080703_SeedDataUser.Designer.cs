@@ -4,6 +4,7 @@ using Aminimanesh.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aminimanesh.DataLayer.Migrations
 {
     [DbContext(typeof(AminimaneshContext))]
-    partial class AminimaneshContextModelSnapshot : ModelSnapshot
+    [Migration("20250306080703_SeedDataUser")]
+    partial class SeedDataUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -619,7 +622,7 @@ namespace Aminimanesh.DataLayer.Migrations
                         {
                             UserId = 1,
                             Email = "aztecgoodamin1@gmail.com",
-                            Pasword = "$2a$11$f986mlME0epIeEKjSlG7MOrTi2f.hXo4bXok6Ec03KoJTmb41Pa7S",
+                            Pasword = "@Googooli1381",
                             UserName = "AminJP"
                         });
                 });

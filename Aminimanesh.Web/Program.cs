@@ -16,7 +16,8 @@ builder.Services.AddMvc();
 builder.Services.AddAutoMapper(typeof(CustomProfile), typeof(Program));
 
 // forward headers configuration for reverse proxy
-builder.Services.Configure<ForwardedHeadersOptions>(options => {
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     options.KnownNetworks.Clear();
     options.KnownProxies.Clear();
@@ -26,15 +27,10 @@ builder.Services.AddHttpClient<IpApiClient>();
 
 // other service configurations...
 
-IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-
 #region Database Context
 builder.Services.AddDbContext<AminimaneshContext>(options =>
 {
-    options.UseSqlServer(configuration.GetConnectionString("AminimaneshConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AminimaneshConnection"));
 });
 #endregion
 
@@ -94,5 +90,11 @@ app.MapControllerRoute
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}"
     );
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AminimaneshContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
